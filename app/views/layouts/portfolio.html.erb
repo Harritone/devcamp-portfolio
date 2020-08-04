@@ -16,9 +16,7 @@
     <%= login_helper %>
     <%= yield %>
     <p>
-    <% if session[:source] %>
-      Thanks for visiting me from <%= session[:source] %>
-    <% end %>
+      <%= source_helper("application") %>
     </p>
   </body>
 </html>

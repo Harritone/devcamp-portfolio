@@ -19,9 +19,7 @@
     <%= render "shared/nav", location: 'bottom' %>
 
     <p>
-    <% if session[:source] %>
-      Thanks for visiting me from <%= session[:source] %>
-    <% end %>
+      <%= source_helper("blog") %>
     </p>
   </body>
   </html>
