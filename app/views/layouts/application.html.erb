@@ -11,7 +11,14 @@
   </head>
 
   <body>
-
+    <%= video_tag(
+      "laptop.mp4",
+      id: "background",
+      autoplay: true,
+      loop: true,
+      muted: true,
+      poster: "bg.jpg"
+    ) %>
     <div class="site-wrapper">
 
       <div class="site-wrapper-inner">
