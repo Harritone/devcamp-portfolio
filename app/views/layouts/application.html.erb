@@ -11,6 +11,7 @@
   </head>
 
   <body>
+
     <%= video_tag(
       "laptop.mp4",
       id: "background",
@@ -19,6 +20,7 @@
       muted: true,
       poster: "bg.jpg"
     ) %>
+
     <div class="site-wrapper">
 
       <div class="site-wrapper-inner">
@@ -31,7 +33,8 @@
           <%= yield %>
 
           <%= render "shared/application_footer"%>
-          <%= render "shared/alerts" %>
+
+          <%= alerts %>
 
           <%= source_helper("application") %>
 
