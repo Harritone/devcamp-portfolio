@@ -15,6 +15,7 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require html.sortable
+//= require gritter
 //= require cocoon
 //= require turbolinks
 //= require_tree .

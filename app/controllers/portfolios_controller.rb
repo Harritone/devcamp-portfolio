@@ -51,10 +51,7 @@ class PortfoliosController < ApplicationController
   end
 
   def destroy
-    #this is going to perform the lookup
-    #this is going to destroy/delete the record
     @portfolio_item.destroy
-    #this is going to redirect the route
     respond_to do |format|
       format.html { redirect_to portfolios_url, notice: 'Record was removed.' }
     end
