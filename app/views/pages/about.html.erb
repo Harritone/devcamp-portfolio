@@ -1,11 +1,76 @@
-<h1>About me</h1>
-<hr>
-<div class="row">
-  <div class="col-md-4">
-    <%= image_tag("me.jpg", alt: "Profile Image", width: "300") %>
-  </div>
-  <div class="col-md-8">
-    <p>I am a Full-stack Developer with over a year of commercial experience. I create successful websites that are fast, easy to use, and built with best practices.</p>
-    <p>I work to make a better web, one that is fast, easy to use, beautiful, accessible to all. Regardless of your specific business requirements, in solving these challenges, you have a great chance of finding success online.</p>
+<div class="app-card-container">
+  <div class="card">
+    <h1 class="about-header">About me</h1>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-auto">
+          <%= image_tag("me.jpg", alt: "Profile Image", width: "300", class: "profile-img") %>
+          <div class="skills">
+            <% @skills.each do |skill| %>
+              <div class="skill">
+                <h4><%= skill.title %></h4>
+                <div class="progress">
+                  <div class="progress-bar progress-bar-striped bg-warning"
+                       role="progressbar"
+                       area-valuenow="<%= skill.percent_utilized %>"
+                       area-valuemax="100"
+                       style="width: <%= skill.percent_utilized %>%"
+                    ></div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="col">
+          <p>I am a Full-stack Developer with over a year of commercial experience. I create successful websites that are fast, easy to use, and built with best practices.</p>
+          <p>I work to make a better web, one that is fast, easy to use, beautiful, accessible to all. Regardless of your specific business requirements, in solving these challenges, you have a great chance of finding success online.</p>
+          <p>
+            <button
+             class="btn btn-primary"
+             type="button"
+             data-toggle="collapse"
+             data-target="#education"
+             aria-expended="false"
+             aria-controler="education"
+              >
+              Education
+            </button>
+
+            <button
+             class="btn btn-primary"
+             type="button"
+             data-toggle="collapse"
+             data-target="#jobHistory"
+             aria-expended="false"
+             aria-controler="jobHistory"
+              >
+              Job History
+            </button>
+
+          </p>
+          <p>
+            <div id="education" class="collapse">
+              <div class="card card-body">
+                School
+              </div>
+              <div class="card card-body">
+                University 1
+              </div>
+            </div>
+          </p>
+
+          <p>
+            <div id="jobHistory" class="collapse">
+              <div class="card card-body">
+                Jobs
+              </div>
+              <div class="card card-body">
+                Jobs 1
+              </div>
+            </div>
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

@@ -1,19 +1,29 @@
 class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :edit, :update, :destroy, :toggle_status]
+  before_action :set_sidebar_topics, except: [:update, :create, :destroy, :toggle_status]
+  layout "blog"
   access all: [:show, :index], user: {except: [:destroy, :new, :create, :update, :edit, :toggle_status]}, site_admin: :all
   layout "blog"
 
   def index
-    @blogs = Blog.page(params[:page]).per(5)
+    if logged_in?(:site_admin)
+      @blogs = Blog.recent.page(params[:page]).per(5)
+    else
+      @blogs = Blog.recent.published.page(params[:page]).per(5)
+    end
     @page_title = "My portfolio blog"
   end
 
   def show
-    @blog = Blog.includes(:comments).friendly.find(params[:id])
-    @comment = Comment.new
+    if logged_in?(:site_admin) || @blog.published?
+      @blog = Blog.includes(:comments).friendly.find(params[:id])
+      @comment = Comment.new
 
-    @page_title = @blog.title
-    @seo_keywords = @blog.body
+      @page_title = @blog.title
+      @seo_keywords = @blog.body
+    else
+      redirect_to blogs_path, notice: "You are not authorized to acces this page"
+    end
   end
 
   def new
@@ -62,11 +72,15 @@ class BlogsController < ApplicationController
   end
 
   private
-    def set_blog
-      @blog = Blog.friendly.find(params[:id])
-    end
+  def set_blog
+    @blog = Blog.friendly.find(params[:id])
+  end
 
-    def blog_params
-      params.require(:blog).permit(:title, :body)
-    end
+  def blog_params
+    params.require(:blog).permit(:title, :body, :topic_id, :status)
+  end
+
+  def set_sidebar_topics
+    @side_bar_topics = Topic.with_blogs
+  end
 end
