@@ -5,6 +5,21 @@
       <div class="row">
         <div class="col-auto">
           <%= image_tag("me.jpg", alt: "Profile Image", width: "300", class: "profile-img") %>
+          <div class="skills">
+            <% @skills.each do |skill| %>
+              <div class="skill">
+                <h4><%= skill.title %></h4>
+                <div class="progress">
+                  <div class="progress-bar progress-bar-striped bg-warning"
+                       role="progressbar"
+                       area-valuenow="<%= skill.percent_utilized %>"
+                       area-valuemax="100"
+                       style="width: <%= skill.percent_utilized %>%"
+                    ></div>
+                </div>
+              </div>
+            <% end %>
+          </div>
         </div>
         <div class="col">
           <p>I am a Full-stack Developer with over a year of commercial experience. I create successful websites that are fast, easy to use, and built with best practices.</p>
