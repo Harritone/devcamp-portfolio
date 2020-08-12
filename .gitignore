@@ -22,7 +22,4 @@
 
 # I don't want to show my secrets
 /config/secrets.yml
-*.jpg
-*.png
-*.mp4
 .env
